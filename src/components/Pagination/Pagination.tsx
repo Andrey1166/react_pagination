@@ -1,14 +1,14 @@
 type Props = {
   total: number;
   perPage: number;
-  currentPage: number;
+  currentPage?: number;
   onPageChange: (page: number) => void;
 };
 
 export const Pagination: React.FC<Props> = ({
   total,
   perPage,
-  currentPage,
+  currentPage = 1,
   onPageChange,
 }) => {
   const pages = Math.ceil(total / perPage);
@@ -36,7 +36,7 @@ export const Pagination: React.FC<Props> = ({
           <a
             data-cy="pageLink"
             className="page-link"
-            href="#1"
+            href={`#page-${page}`}
             onClick={() => page !== currentPage && onPageChange(page)}
           >
             {page}
